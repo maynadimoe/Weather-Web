@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Web</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div
+      class="container border border-black border-3 rounded mx-auto mt-5 p-4 shadow p-3 mb-5 bg-body-tertiar"
+    >
+      <form action="" id="searchform">
+        <div class="row text-center d-flex flex-row-reverse">
+          <input type="submit" value="🔍" class="rounded-5 col-1" />
+          <input
+            type="text"
+            placeholder="    Search"
+            class="rounded-5 p-1 col-4"
+            id="city"
+          />
+        </div>
+      </form>
+      <button class="current-location border border-black rounded-5">
+        Current Location
+      </button>
+
+      <div class="current">
+        <h3 id="currentCity">Yangon</h3>
+        <h1>
+          <span id="degree">31</span>
+          <span class="units"
+            ><a href="#" id="cel">°C |</a><a href="#" id="fah">°F</a></span
+          >
+          <small id="description">(Mostly cloudy☁)</small>
+        </h1>
+        <p id="dt">Friday 11:00</p>
+      </div>
+      <div
+        class="side-info row d-flex flex-row-reverse mb-5 mt-5 border rounded-bottom-4 p-2 text-center"
+      >
+        <div class="col">Precipitation: 0%</div>
+        <div class="col">Humidity: <span id="humidity">62</span> %</div>
+        <div class="col">Wind: <span id="wind">5</span> mph</div>
+      </div>
+      <div class="text-center p-3">
+        <div class="row">
+          <div class="col-2 align-self-start">
+            SAT
+            <div class="row"><div class="col">☁</div></div>
+            <p>38°~24°</p>
+          </div>
+          <div class="col-2 align-self-end">SUN<br />🌧 <br />30°~20°</div>
+          <div class="col-2 align-self-start">MON<br />🌩 <br />20°~15°</div>
+          <div class="col-2 align-self-end">TUE<br />⛅<br />38°~30°</div>
+          <div class="col-2 align-self-start">WED<br />🌤<br />35°~24°</div>
+          <div class="col-2 align-self-end">THUR<br />☁<br />38°~24°</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="src/index.js"></script>
+  </body>
+</html>

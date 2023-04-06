@@ -1,0 +1,31 @@
+.container {
+  background: linear-gradient(180deg, #8ec5fc 0%, #e0c3fc 100%);
+  background-repeat: no-repeat;
+}
+
+.units {
+  position: relative;
+  top: -20px;
+}
+
+#cel,
+#fah {
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.current-location {
+  position: relative;
+  top: -33px;
+  padding: 5px 10px;
+  background: rgba(250, 127, 199, 0.5);
+  transition: all 200ms ease-in-out;
+}
+
+button:hover {
+  background-color: aqua;
+}
+
+#description {
+  text-transform: capitalize;
+}
