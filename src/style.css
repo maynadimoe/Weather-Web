@@ -2,7 +2,9 @@
   background: linear-gradient(180deg, #8ec5fc 0%, #e0c3fc 100%);
   background-repeat: no-repeat;
 }
-
+#description {
+  font-size: 20px;
+}
 .units {
   position: relative;
   top: -20px;

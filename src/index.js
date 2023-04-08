@@ -7,7 +7,7 @@ let days = [
   "Wednesday",
   "Thursday",
   "Friday",
-  "Saturaday",
+  "Saturday",
 ];
 let hour = now.getHours();
 let minute = now.getMinutes();
@@ -71,11 +71,18 @@ function showWeather(response) {
   let temperature = Math.round(response.data.temperature.current);
   let currentLocation = response.data.city;
   let cc = document.querySelector("#currentCity");
-  cc.innerHTML = currentLocation;
   let currentTemp = document.querySelector("#degree");
-  currentTemp.innerHTML = temperature;
   let description = document.querySelector("#description");
-  description.innerHTML = `(${response.data.condition.description})`;
+  let icon = document.querySelector("#iconElement");
+
+  cc.innerHTML = currentLocation;
+  currentTemp.innerHTML = temperature;
+  description.innerHTML = response.data.condition.description;
+  icon.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = response.data.temperature.humidity;
   let wind = document.querySelector("#wind");
