@@ -13,7 +13,15 @@ let hour = now.getHours();
 let minute = now.getMinutes();
 
 let dateAndTime = document.querySelector("#dt");
-dateAndTime.innerHTML = `${days[day]} ${hour}:${minute}`;
+if (hour < 10 && minute < 10) {
+  dateAndTime.innerHTML = `${days[day]} 0${hour}:0${minute}`;
+} else if (hour < 10) {
+  dateAndTime.innerHTML = `${days[day]} 0${hour}:${minute}`;
+} else if (minute < 10) {
+  dateAndTime.innerHTML = `${days[day]} ${hour}:0${minute}`;
+} else {
+  dateAndTime.innerHTML = `${days[day]} ${hour}:${minute}`;
+}
 
 let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
 let searchform = document.querySelector("#searchform");
