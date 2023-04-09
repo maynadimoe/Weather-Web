@@ -23,6 +23,31 @@ if (hour < 10 && minute < 10) {
   dateAndTime.innerHTML = `${days[day]} ${hour}:${minute}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["WED", "THU", "FRI", "SAT", "SUN", "MON"];
+  let forecasHTML = `<div class="row">`;
+
+  days.forEach(function (day) {
+    forecasHTML =
+      forecasHTML +
+      `
+      <div class="col-2">
+        <div class="weather-forecast-date">${day}</div>
+        <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png" width="50px">
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 18° </span>
+          <span class="weather-forecast-temperature-min"> 12° </span>
+        </div>
+      </div>
+  `;
+  });
+
+  forecasHTML = forecasHTML + `</div>`;
+  forecastElement.innerHTML = forecasHTML;
+  console.log(forecasHTML);
+}
+
 let apiKey = "5b5a364ee2c9o4f39458af01ata32bc1";
 let searchform = document.querySelector("#searchform");
 
@@ -111,3 +136,4 @@ fahrenheit.addEventListener("click", convertToFahrenheit);
 celcius.addEventListener("click", convertToCelsius);
 
 let celciusTemperature = null;
+displayForecast();
