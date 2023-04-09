@@ -32,3 +32,12 @@ button:hover {
 #description {
   text-transform: capitalize;
 }
+
+footer {
+  text-align: center;
+}
+
+#mnm {
+  text-decoration: none;
+  color: rgb(213, 30, 229);
+}
