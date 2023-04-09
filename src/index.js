@@ -43,27 +43,6 @@ function displayCity(event) {
 
 searchform.addEventListener("submit", displayCity);
 
-let celcius = document.querySelector("#cel");
-let degree = document.querySelector("#degree");
-let fahrenheit = document.querySelector("#fah");
-
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let temp = parseFloat(degree.innerHTML);
-  temp = (temp * 9) / 5 + 32;
-  degree.innerHTML = Math.round(temp);
-}
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  let temp = parseFloat(degree.innerHTML);
-  temp = ((temp - 32) * 5) / 9;
-  degree.innerHTML = Math.round(temp);
-}
-
-fahrenheit.addEventListener("click", convertToFahrenheit);
-celcius.addEventListener("click", convertToCelsius);
-
 //location
 let button = document.querySelector(".current-location");
 
@@ -74,6 +53,8 @@ function showWeather(response) {
   let currentTemp = document.querySelector("#degree");
   let description = document.querySelector("#description");
   let icon = document.querySelector("#iconElement");
+
+  celciusTemperature = response.data.temperature.current;
 
   cc.innerHTML = currentLocation;
   currentTemp.innerHTML = temperature;
@@ -102,3 +83,31 @@ function retrievePosition() {
 }
 
 button.addEventListener("click", retrievePosition);
+
+let celcius = document.querySelector("#cel");
+let fahrenheit = document.querySelector("#fah");
+
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#degree");
+
+  celcius.classList.remove("active");
+  fahrenheit.classList.add("active");
+  let fahrenheitTemperature = (celciusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+
+  celcius.classList.add("active");
+  fahrenheit.classList.remove("active");
+
+  let temperatureElement = document.querySelector("#degree");
+  temperatureElement.innerHTML = Math.round(celciusTemperature);
+}
+
+fahrenheit.addEventListener("click", convertToFahrenheit);
+celcius.addEventListener("click", convertToCelsius);
+
+let celciusTemperature = null;
