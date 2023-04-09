@@ -23,7 +23,8 @@ if (hour < 10 && minute < 10) {
   dateAndTime.innerHTML = `${days[day]} ${hour}:${minute}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   let days = ["WED", "THU", "FRI", "SAT", "SUN", "MON"];
   let forecasHTML = `<div class="row">`;
@@ -45,28 +46,24 @@ function displayForecast() {
 
   forecasHTML = forecasHTML + `</div>`;
   forecastElement.innerHTML = forecasHTML;
-  console.log(forecasHTML);
+}
+
+function getForecast(coordinates) {
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 let apiKey = "5b5a364ee2c9o4f39458af01ata32bc1";
 let searchform = document.querySelector("#searchform");
 
-function displayCity(event) {
-  event.preventDefault();
-  let city = document.querySelector("#city").value;
-  if (!city) {
-    alert("Please enter a valid city name");
-    return;
-  } else {
-    axios
-      .get(
-        `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`
-      )
-      .then(showWeather);
-  }
+let city = document.querySelector("#city").value;
+function search(city) {
+  axios
+    .get(
+      `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`
+    )
+    .then(showWeather);
 }
-
-searchform.addEventListener("submit", displayCity);
 
 //location
 let button = document.querySelector(".current-location");
@@ -78,6 +75,8 @@ function showWeather(response) {
   let currentTemp = document.querySelector("#degree");
   let description = document.querySelector("#description");
   let icon = document.querySelector("#iconElement");
+  let humidity = document.querySelector("#humidity");
+  let wind = document.querySelector("#wind");
 
   celciusTemperature = response.data.temperature.current;
 
@@ -89,10 +88,10 @@ function showWeather(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
 
-  let humidity = document.querySelector("#humidity");
   humidity.innerHTML = response.data.temperature.humidity;
-  let wind = document.querySelector("#wind");
+
   wind.innerHTML = response.data.wind.speed;
+  getForecast(response.data.coordinates);
 }
 
 function retrievePosition() {
@@ -136,4 +135,4 @@ fahrenheit.addEventListener("click", convertToFahrenheit);
 celcius.addEventListener("click", convertToCelsius);
 
 let celciusTemperature = null;
-displayForecast();
+search("Yangon");
