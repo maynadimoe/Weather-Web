@@ -149,5 +149,13 @@ function convertToCelsius(event) {
 fahrenheit.addEventListener("click", convertToFahrenheit);
 celcius.addEventListener("click", convertToCelsius);
 
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city");
+  search(cityInputElement.value);
+}
+
 let celciusTemperature = null;
+let form = document.querySelector("#searchform");
+form.addEventListener("submit", handleSubmit);
 search("Yangon");
